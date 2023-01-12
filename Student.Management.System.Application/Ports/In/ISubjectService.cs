@@ -6,9 +6,8 @@ using Student.Management.System.Domain.Entities;
 
 namespace Student.Management.System.Application.Ports.In
 {
-    public interface IStudentService
+    public interface ISubjectService
     {
-        public Task<List<StudentDetails>> AddStudent(StudentDetails student);
-        public List<StudentDetails> GetAllStudents();
+        ICollection<StudentDetails> GetStudentsWithSubject(int id);
     }
 }

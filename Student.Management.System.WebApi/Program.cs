@@ -1,7 +1,10 @@
+global using Microsoft.EntityFrameworkCore;
 using Student.Management.System.Application.Ports.In;
 using Student.Management.System.Application.Ports.Out;
 using Student.Management.System.Application.Services;
+using Student.Management.System.Infrastructure.Data;
 using Student.Management.System.Infrastructure.Repository;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,8 +15,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<DataContext>(options => {
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<ISubjectService, SubjectService>();
+builder.Services.AddScoped<ISubjectRepository, SubjectRepository>();
+
 
 var app = builder.Build();
 

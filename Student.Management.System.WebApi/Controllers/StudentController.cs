@@ -26,5 +26,11 @@ namespace Student.Management.System.WebApi.Controllers
             
             return Ok(_service.GetAllStudents());
         }
+
+        [HttpPost]
+        public async Task<ActionResult> AddStudent(StudentDetails student){
+            
+            return Ok(await _service.AddStudent(student));
+        }
     }
 }

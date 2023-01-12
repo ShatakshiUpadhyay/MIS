@@ -11,7 +11,7 @@
       "port": 1433,
       "driver": "MSSQL",
       "name": "server",
-      "database": "student",
+      "database": "school",
       "username": "sa",
       "password": "MyPass@word"
     }

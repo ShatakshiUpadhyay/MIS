@@ -7,7 +7,9 @@ namespace Student.Management.System.Domain.Entities
 {
     public class Subject
     {
-        public int Id { get; set; }
+        public int SubjectId { get; set; }
         public string Name { get; set; } ="";
+
+        public ICollection<StudentDetails> Students {get; set;}
     }
 }

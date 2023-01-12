@@ -6,11 +6,9 @@ using Student.Management.System.Domain.Entities;
 
 namespace Student.Management.System.Application.Ports.Out
 {
-    public interface IStudentRepository
+    public interface ISubjectRepository
     {
-        IEnumerable<StudentDetails> GetStudents();
-
-        Task<IEnumerable<StudentDetails>> InsertStudent(StudentDetails student);
+        ICollection<StudentDetails> GetStudentsWithSubject(int id);
 
     }
 }

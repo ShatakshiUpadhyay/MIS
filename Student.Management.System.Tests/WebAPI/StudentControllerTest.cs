@@ -9,6 +9,7 @@ using Student.Management.System.Application.Ports.In;
 using Student.Management.System.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace Student.Management.System.Tests
 {
     public class StudentControllerTest
@@ -21,6 +22,7 @@ namespace Student.Management.System.Tests
             _mockService = new Mock<IStudentService>();
             _controller = new StudentController(_mockService.Object);
         }
+        
         [Fact]
         public void ShouldReturnListOfAllStudentsWhenCalled()
         {
