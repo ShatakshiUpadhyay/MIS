@@ -1,10 +1,10 @@
+global using AutoMapper;
 global using Microsoft.EntityFrameworkCore;
 using Student.Management.System.Application.Ports.In;
 using Student.Management.System.Application.Ports.Out;
 using Student.Management.System.Application.Services;
 using Student.Management.System.Infrastructure.Data;
 using Student.Management.System.Infrastructure.Repository;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +14,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddDbContext<DataContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));

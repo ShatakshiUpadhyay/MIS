@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Student.Management.System.Domain.Entities;
+using Student.Management.System.Domain.Entities.Dto;
 
 namespace Student.Management.System.Application.Ports.Out
 {
@@ -10,7 +11,7 @@ namespace Student.Management.System.Application.Ports.Out
     {
         IEnumerable<StudentDetails> GetStudents();
 
-        Task<IEnumerable<StudentDetails>> InsertStudent(StudentDetails student);
+        Task<List<GetStudentDto>> InsertStudent(StudentDetails student);
 
     }
 }

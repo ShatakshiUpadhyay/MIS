@@ -10,6 +10,6 @@ namespace Student.Management.System.Domain.Entities
         public int SubjectId { get; set; }
         public string Name { get; set; } ="";
 
-        public ICollection<StudentDetails> Students {get; set;}
+        public ICollection<StudentDetails>? Students {get; set;}
     }
 }
