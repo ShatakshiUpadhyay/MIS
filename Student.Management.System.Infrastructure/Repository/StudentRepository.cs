@@ -18,7 +18,7 @@ namespace Student.Management.System.Infrastructure.Repository
         public StudentRepository(DataContext context , IMapper mapper)
         {
             this.context = context;
-            mapper = _mapper;
+            _mapper = mapper;
         }
 
         public IEnumerable<StudentDetails> GetStudents()
@@ -41,6 +41,8 @@ namespace Student.Management.System.Infrastructure.Repository
             var newstudents = new List<GetStudentDto>();
             context.Students.Add(student);
             await context.SaveChangesAsync();
+            
+            
             newstudents = await context.Students.Select(s=> _mapper.Map<GetStudentDto>(s)).ToListAsync();
 
             return newstudents;
