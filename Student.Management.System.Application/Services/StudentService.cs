@@ -28,14 +28,19 @@ namespace Student.Management.System.Application.Services
             return dbStudents.ToList();
            
         }
-        public async Task<List<GetStudentDto>> AddStudent(AddStudentDto studentDto)
+        public async Task<GetStudentDto> AddStudent(AddStudentDto studentDto)
         {
             StudentDetails student = _mapper.Map<StudentDetails>(studentDto);
 
             var dbStudents = await _studentRepository.InsertStudent(student);
-            return dbStudents.ToList();
+            var finalStudent = _mapper.Map<GetStudentDto>(dbStudents);
+            return finalStudent;
         }
 
-        
+        public async Task<GetStudentDto> DeleteSingle(int id)
+        {
+            GetStudentDto deletedStudent = await _studentRepository.DeleteSingle(id);
+            return deletedStudent;
+        }
     }
 }

@@ -9,9 +9,10 @@ namespace Student.Management.System.Application.Ports.Out
 {
     public interface IStudentRepository
     {
+        Task<GetStudentDto> DeleteSingle(int id);
         IEnumerable<StudentDetails> GetStudents();
 
-        Task<List<GetStudentDto>> InsertStudent(StudentDetails student);
+        Task<StudentDetails> InsertStudent(StudentDetails student);
 
     }
 }

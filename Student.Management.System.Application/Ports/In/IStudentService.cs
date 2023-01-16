@@ -9,7 +9,8 @@ namespace Student.Management.System.Application.Ports.In
 {
     public interface IStudentService
     {
-        public Task<List<GetStudentDto>> AddStudent(AddStudentDto studentDto);
+        public Task<GetStudentDto> AddStudent(AddStudentDto studentDto);
+        Task<GetStudentDto> DeleteSingle(int id);
         public List<StudentDetails> GetAllStudents();
     }
 }

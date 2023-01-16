@@ -31,5 +31,16 @@ namespace Student.Management.System.WebApi.Controllers
         public async Task<ActionResult> AddStudent(AddStudentDto studentDto){
             return Ok(await _service.AddStudent(studentDto));
         }
+
+        [HttpDelete("{Id}")]
+        public async Task<ActionResult> DeleteSingle(int Id){
+            try{
+                var result = await _service.DeleteSingle(Id);
+                return Ok(result);
+            }
+            catch(Exception ex){
+                return NotFound(ex.Message);
+            }
+        }
     }
 }

@@ -10,9 +10,10 @@ namespace Student.Management.System.WebApi
     {
         public AutoMapperProfile()
         {
-            CreateMap<StudentDetails,GetStudentDto>();
-            CreateMap<AddStudentDto , StudentDetails>();
+            CreateMap<StudentDetails,GetStudentDto>().ReverseMap();
+            CreateMap<AddStudentDto , StudentDetails>().ReverseMap();
             CreateMap<GetStudentDto,StudentDetails>();
+            CreateMap<GetStudentDto,AddStudentDto>().ReverseMap();
             // CreateMap<UpdateCharacterDto, Character>();
         }
     }

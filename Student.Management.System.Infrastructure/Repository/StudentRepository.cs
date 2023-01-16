@@ -36,16 +36,38 @@ namespace Student.Management.System.Infrastructure.Repository
             }).ToList();
         }
 
-        public async Task<List<GetStudentDto>> InsertStudent(StudentDetails student)
+        public async Task<StudentDetails> InsertStudent(StudentDetails student)
         {
-            var newstudents = new List<GetStudentDto>();
+            
+            try{
+            // var newstudents = new List<GetStudentDto>();
             context.Students.Add(student);
             await context.SaveChangesAsync();
-            
-            
-            newstudents = await context.Students.Select(s=> _mapper.Map<GetStudentDto>(s)).ToListAsync();
+            // newstudents = await context.Students.Select(s=> _mapper.Map<GetStudentDto>(s)).ToListAsync();
+            return student;
+            }catch(Exception ex){
+                throw ex;
+            }
+        
+        }
 
-            return newstudents;
+        public async Task<GetStudentDto> DeleteSingle(int id)
+        {
+            try
+            {
+            var student =await  context.Students.FirstOrDefaultAsync(c=> c.Id == id);
+            if(student is null){
+                throw new Exception($"Student with Id {id} not found");
+            }
+            context.Students.Remove(student);
+            await context.SaveChangesAsync();
+            GetStudentDto resultStudent = _mapper.Map<GetStudentDto>(student); 
+            return resultStudent;
+            }
+            catch(Exception ex){
+                throw ex;
+            }
+            
         }
     }
 }
