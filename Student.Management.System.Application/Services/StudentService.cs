@@ -42,5 +42,26 @@ namespace Student.Management.System.Application.Services
             GetStudentDto deletedStudent = await _studentRepository.DeleteSingle(id);
             return deletedStudent;
         }
+
+        public async Task<List<GetStudentDto>> DeleteMultiple(string Ids)
+        {
+            List<String> deleteStudentsIds = Ids.Split(",").ToList();
+            List<GetStudentDto> deletedStudents = new List<GetStudentDto>();
+
+            foreach (string studentId in deleteStudentsIds)
+            {
+                deletedStudents.Add( await DeleteSingle(int.Parse(studentId))); 
+            }
+
+            return deletedStudents;
+        
+        }
+
+        public async Task<GetStudentDto> UpdateStudent(GetStudentDto student)
+        {
+           
+            return await _studentRepository.UpdateStudent(student);
+        
+        }
     }
 }

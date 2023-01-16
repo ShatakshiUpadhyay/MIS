@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Student.Management.System.Application.Ports.In;
 using Student.Management.System.Application.Ports.Out;
+using Student.Management.System.Domain.Entities.Dto;
 
 namespace Student.Management.System.WebApi.Controllers
 {
@@ -23,8 +24,11 @@ namespace Student.Management.System.WebApi.Controllers
 
         [HttpGet]
         public ActionResult GetAllStudents(){
-            
-            return Ok(_service.GetAllStudents());
+            var students = _service.GetAllStudents();
+            if(!students.Any())
+                return NoContent();
+
+            return Ok(students);
         }
 
         [HttpPost]
@@ -42,5 +46,31 @@ namespace Student.Management.System.WebApi.Controllers
                 return NotFound(ex.Message);
             }
         }
+
+        [HttpDelete]
+        public async Task<ActionResult> DeleteMultiple([FromQuery] String Ids){
+            
+            return Ok(await _service.DeleteMultiple(Ids));
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateStudent(int Id, GetStudentDto Student){
+            
+            if (Id != Student.Id)  
+            {  
+                return BadRequest();  
+            }  
+
+            try{
+                var result = await _service.UpdateStudent(Student);
+                return Ok(result);
+            }
+            catch(Exception ex){
+                return NotFound(ex.Message);
+            }
+            
+        }
+            
+        
     }
 }

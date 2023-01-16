@@ -69,5 +69,30 @@ namespace Student.Management.System.Infrastructure.Repository
             }
             
         }
+
+        public async Task<GetStudentDto> UpdateStudent(GetStudentDto student)
+        {
+            
+            try{
+
+                StudentDetails finalStudent = _mapper.Map<StudentDetails>(student);
+                var studentToUpdate = await context.Students.FirstOrDefaultAsync(c=> c.Id == finalStudent.Id);
+                if(studentToUpdate == null){
+                    throw new Exception($"Student with Id {finalStudent.Id} not found");
+                }
+                else{
+                    context.Entry(studentToUpdate).State = EntityState.Detached;
+
+                }
+
+                context.Entry(finalStudent).State = EntityState.Modified;
+            
+                await context.SaveChangesAsync();
+                return student;
+            }
+            catch(Exception ex){
+                throw ex;
+            }
+        }
     }
 }

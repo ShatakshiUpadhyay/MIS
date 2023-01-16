@@ -13,6 +13,6 @@ namespace Student.Management.System.Application.Ports.Out
         IEnumerable<StudentDetails> GetStudents();
 
         Task<StudentDetails> InsertStudent(StudentDetails student);
-
+        Task<GetStudentDto> UpdateStudent(GetStudentDto student);
     }
 }
