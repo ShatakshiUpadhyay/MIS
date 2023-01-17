@@ -62,7 +62,7 @@ namespace Student.Management.System.WebApi.Controllers
             }  
 
             try{
-                var result = await _service.UpdateStudent(Student);
+                GetStudentDto result = await _service.UpdateStudent(Student);
                 return Ok(result);
             }
             catch(Exception ex){

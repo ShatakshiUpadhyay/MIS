@@ -1,16 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Xunit;
 using Moq;
 using Student.Management.System.WebApi.Controllers;
 using Student.Management.System.Application.Ports.In;
 using Student.Management.System.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Student.Management.System.Domain.Entities.Dto;
-using Student.Management.System.Application.Ports.Out;
-using AutoMapper;
 
 namespace Student.Management.System.Tests
 {
@@ -58,6 +51,26 @@ namespace Student.Management.System.Tests
             Assert.Equal(studentDto.FirstName, studentTest.FirstName);
             Assert.Equal(studentDto.MiddleName, studentTest.MiddleName);
             Assert.Equal(studentDto.LastName, studentTest.LastName);
+        }
+
+        [Fact]
+        public void ShouldDeleteStudentWhenIdIsGiven(){
+            var id = 1;
+            _mockService.Setup(s => s.DeleteSingle(id)).ReturnsAsync(new GetStudentDto());
+
+            Task<ActionResult> task = _controller.DeleteSingle(id);
+
+            _mockService.Verify(s => s.DeleteSingle(id), Times.Once);
+        }
+
+        [Fact]
+        public void ShouldDeleteMultipleStudentWhenIdsAreGiven(){
+            String ids = "1,2,3";
+            _mockService.Setup(s => s.DeleteMultiple(ids)).ReturnsAsync(new List<GetStudentDto> {new GetStudentDto(), new GetStudentDto(), new GetStudentDto()});
+
+            Task<ActionResult> task = _controller.DeleteMultiple(ids);
+
+            _mockService.Verify(s => s.DeleteMultiple(ids), Times.Once);
         }
     }
 }
