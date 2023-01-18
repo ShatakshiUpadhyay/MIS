@@ -22,7 +22,7 @@ namespace Student.Management.System.WebApi.Controllers
             _service = service;
         }
 
-        [HttpGet]
+        [HttpGet("GetAll")]
         public ActionResult GetAllStudents(){
             var students = _service.GetAllStudents();
             if(!students.Any())
@@ -31,12 +31,12 @@ namespace Student.Management.System.WebApi.Controllers
             return Ok(students);
         }
 
-        [HttpPost]
+        [HttpPost("Post")]
         public async Task<ActionResult> AddStudent(AddStudentDto studentDto){
             return Ok(await _service.AddStudent(studentDto));
         }
 
-        [HttpDelete("{Id}")]
+        [HttpDelete("DeleteSingle/{Id}")]
         public async Task<ActionResult> DeleteSingle(int Id){
             try{
                 var result = await _service.DeleteSingle(Id);
@@ -47,13 +47,13 @@ namespace Student.Management.System.WebApi.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("DeleteMultiple")]
         public async Task<ActionResult> DeleteMultiple([FromQuery] String Ids){
             
             return Ok(await _service.DeleteMultiple(Ids));
         }
 
-        [HttpPut]
+        [HttpPut("Update")]
         public async Task<ActionResult> UpdateStudent(int Id, GetStudentDto Student){
             
             if (Id != Student.Id)  
