@@ -14,5 +14,6 @@ namespace Student.Management.System.Application.Ports.Out
 
         Task<StudentDetails> InsertStudent(StudentDetails student);
         Task<GetStudentDto> UpdateStudent(GetStudentDto student);
+        Task<IEnumerable<GetStudentDto>> GetStudentsWithDapper();
     }
 }

@@ -19,6 +19,11 @@ namespace Student.Management.System.Infrastructure.Repository
             this.context = context;
         }
 
+        public ICollection<Subject> GetAllSubjects()
+        {
+            return context.Subjects.ToList();
+        }
+
         public ICollection<StudentDetails> GetStudentsWithSubject(int id)
         {
             ICollection<StudentDetails>? studentDetails = context.Subjects.Where(s => s.SubjectId == id)

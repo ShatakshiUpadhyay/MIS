@@ -23,6 +23,14 @@ namespace Student.Management.System.WebApi.Controllers
             
             return Ok( _service.GetStudentsWithSubject(id));
         }
+        [HttpGet("GetAll")]
+        public ActionResult GetAllStudents(){
+            var students = _service.GetAllSubjects();
+            if(!students.Any())
+                return NoContent();
+
+            return Ok(students);
+        }
 
     }
 }

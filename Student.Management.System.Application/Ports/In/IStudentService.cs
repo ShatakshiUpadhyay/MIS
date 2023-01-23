@@ -13,6 +13,7 @@ namespace Student.Management.System.Application.Ports.In
         Task<List<GetStudentDto>> DeleteMultiple(string ids);
         Task<GetStudentDto> DeleteSingle(int id);
         public List<StudentDetails> GetAllStudents();
+        Task<IEnumerable<GetStudentDto>> GetAllStudentsByDapper();
         Task<GetStudentDto> UpdateStudent(GetStudentDto student);
     }
 }

@@ -14,15 +14,7 @@ namespace Student.Management.System.Infrastructure.Data
             
         }
 
-        // protected override void OnModelCreating(ModelBuilder modelBuilder)
-        // {
-        //     // modelBuilder.Entity<StudentDetails>()
-        //     //     .HasOne<Subject>(s => s.Subject)
-        //     //     .WithMany(Subject => Subject.Students)
-        //     //     .HasForeignKey(s => s.SubjectId);
-
-        //     modelBuilder.Entity<Subject>().Ignore(s => s.Students);
-        // }
+        
 
         public DbSet<StudentDetails> Students => Set<StudentDetails>();  
         public DbSet<Subject> Subjects => Set<Subject>();  

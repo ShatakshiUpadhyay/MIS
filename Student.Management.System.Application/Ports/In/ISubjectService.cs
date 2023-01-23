@@ -9,5 +9,7 @@ namespace Student.Management.System.Application.Ports.In
     public interface ISubjectService
     {
         ICollection<StudentDetails> GetStudentsWithSubject(int id);
+        ICollection<Subject> GetAllSubjects();
+
     }
 }

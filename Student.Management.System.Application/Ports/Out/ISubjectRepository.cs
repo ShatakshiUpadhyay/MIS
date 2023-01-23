@@ -8,6 +8,7 @@ namespace Student.Management.System.Application.Ports.Out
 {
     public interface ISubjectRepository
     {
+        ICollection<Subject> GetAllSubjects();
         ICollection<StudentDetails> GetStudentsWithSubject(int id);
 
     }

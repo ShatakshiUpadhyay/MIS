@@ -70,7 +70,14 @@ namespace Student.Management.System.WebApi.Controllers
             }
             
         }
-            
+        [HttpGet("GetAllByDapper")]
+        public async Task<ActionResult> GetAllStudentsWithDapper(){
+            var students = await _service.GetAllStudentsByDapper();
+            if(students == null)
+                return NoContent();
+
+            return Ok(students);
+        }
         
     }
 }

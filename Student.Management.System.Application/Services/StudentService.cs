@@ -63,5 +63,10 @@ namespace Student.Management.System.Application.Services
             return await _studentRepository.UpdateStudent(student);
         
         }
+
+        public async Task<IEnumerable<GetStudentDto>> GetAllStudentsByDapper()
+        {
+            return await _studentRepository.GetStudentsWithDapper();
+        }
     }
 }

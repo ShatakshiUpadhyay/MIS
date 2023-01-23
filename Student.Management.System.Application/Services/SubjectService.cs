@@ -21,5 +21,10 @@ namespace Student.Management.System.Application.Services
         {
             return _subjectRepository.GetStudentsWithSubject(id);
         }
+
+        public ICollection<Subject> GetAllSubjects()
+        {
+            return _subjectRepository.GetAllSubjects();
+        }
     }
 }
